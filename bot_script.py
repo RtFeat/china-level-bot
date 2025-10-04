@@ -259,7 +259,7 @@ def run_flask():
     app.run(host='0.0.0.0', port=port, debug=False)
 
 def send_main_menu(chat_id):
-    webapp_url = 'https://bo-tg.vercel.app/' 
+    webapp_url = 'https://china-level-bot.vercel.app/' 
 
     bot.send_message(chat_id, "Команда China level приветствует Вас!\n"
                      "Берем на себя все вопросы по работе с Китаем от поиска до доставки в РФ, найдем, проверим, выкупим и доставим Ваш товар в Россию.\n\n"
