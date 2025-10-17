@@ -281,7 +281,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Клькулятор доставки</h1>
+            <h1>Калькулятор доставки</h1>
             <p style="color: var(--tg-theme-hint-color, #888); font-size: 14px;">China Level</p>
         </div>
 
@@ -324,7 +324,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Стоимость товара (₽):</label>
+                    <label class="form-label">Стоимость товара ($):</label>
                     <input type="number" class="form-input" id="product-cost" placeholder="Введите стоимость товара" required>
                 </div>
 
@@ -341,11 +341,11 @@
                 <div class="form-group">
                     <label class="form-label">Виды упаковок:</label>
                     <select class="form-input" id="packaging" required>
-                        <option value="Мешок">Водонепроницаемый пакет + мешок (5$)</option>
-                        <option value="Картонные уголки">Усиление картонными уголками (6$/0.3м³)</option>
-                        <option value="Деревянная обрешетка">Деревянная обрешетка (8$/0.3м³)</option>
-                        <option value="Паллет">Паллет (35$/м³)</option>
-                        <option value="Деревянный ящик">Деревянный ящик (100$/м³)</option>
+                        <option value="Мешок">Водонепроницаемый пакет + мешок</option>
+                        <option value="Картонные уголки">Усиление картонными уголками</option>
+                        <option value="Деревянная обрешетка">Деревянная обрешетка</option>
+                        <option value="Паллет">Паллет</option>
+                        <option value="Деревянный ящик">Деревянный ящик</option>
                     </select>
                 </div>
 
@@ -360,7 +360,7 @@
 
                 <div class="checkbox-group">
                     <input type="checkbox" class="checkbox" id="insurance">
-                    <label for="insurance">Страховка (1% от стоимости товара)</label>
+                    <label for="insurance">Страховка (1-3% от стоимости товара)</label>
                 </div>
 
                 <div class="checkbox-group">
@@ -387,27 +387,23 @@
             </div>
             <div class="result-item">
                 <span class="result-label">Стоимость доставки:</span>
-                <span class="result-value" id="delivery-cost">0 ₽</span>
+                <span class="result-value" id="delivery-cost">$0</span>
             </div>
             <div class="result-item">
                 <span class="result-label">Упаковка:</span>
-                <span class="result-value" id="packaging-cost">0 ₽</span>
+                <span class="result-value" id="packaging-cost">$0</span>
             </div>
             <div class="result-item">
                 <span class="result-label">Страховка:</span>
-                <span class="result-value" id="insurance-cost">0 ₽</span>
+                <span class="result-value" id="insurance-cost">$0</span>
             </div>
             <div class="result-item">
                 <span class="result-label">Разгрузка:</span>
-                <span class="result-value" id="unloading-cost">0 ₽</span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Комиссия (<span id="commission-rate">7%</span>):</span>
-                <span class="result-value" id="commission">0 ₽</span>
+                <span class="result-value" id="unloading-cost">$0</span>
             </div>
             <div class="result-item">
                 <span class="result-label">ИТОГО:</span>
-                <span class="result-value" id="total-cost">0 ₽</span>
+                <span class="result-value" id="total-cost">$0</span>
             </div>
             <div class="density-info" id="density-info">
                 Плотность груза: <span id="density">0</span> кг/м³
@@ -455,7 +451,7 @@
 
         // Функция для форматирования числа
         function formatNumber(num) {
-            return new Intl.NumberFormat('ru-RU', {
+            return new Intl.NumberFormat('en-US', {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 2
             }).format(num);
@@ -486,13 +482,11 @@
 
         // Функция для отображения результатов
         function displayResults(data) {
-            document.getElementById('delivery-cost').textContent = `${formatNumber(data.delivery_cost)} ₽`;
-            document.getElementById('packaging-cost').textContent = `${formatNumber(data.packaging_cost)} ₽`;
-            document.getElementById('insurance-cost').textContent = `${formatNumber(data.insurance_cost)} ₽`;
-            document.getElementById('unloading-cost').textContent = `${formatNumber(data.unloading_cost)} ₽`;
-            document.getElementById('commission').textContent = `${formatNumber(data.commission)} ₽`;
-            document.getElementById('commission-rate').textContent = data.commission_rate;
-            document.getElementById('total-cost').textContent = `${formatNumber(data.total_cost)} ₽`;
+            document.getElementById('delivery-cost').textContent = `$${formatNumber(data.delivery_cost)}`;
+            document.getElementById('packaging-cost').textContent = `$${formatNumber(data.packaging_cost)}`;
+            document.getElementById('insurance-cost').textContent = `$${formatNumber(data.insurance_cost)}`;
+            document.getElementById('unloading-cost').textContent = `$${formatNumber(data.unloading_cost)}`;
+            document.getElementById('total-cost').textContent = `$${formatNumber(data.total_cost)}`;
             document.getElementById('density').textContent = formatNumber(data.density);
 
             // Показываем результат
@@ -583,8 +577,6 @@
                     densityClass = 'high';
                     densityDesc = 'Высокая плотность';
                 }
-                
-                // Можно добавить превью плотности если нужно
             }
         }
 

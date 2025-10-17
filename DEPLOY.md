@@ -64,7 +64,7 @@ git push -u origin main
 
 ## Шаг 6: Обновление URL в коде
 
-После деплоя получите URL вашего проекта (например: `https://your-project.vercel.app`)
+После деплоя получите URL вашего проекта (например: `https://china-level-bot.vercel.app`)
 
 Обновите в `bot_script.py` строку 262:
 
