@@ -170,6 +170,9 @@ def calculate_delivery():
         # ИТОГО (формула из Excel: =F22+F24+F20+H16)
         total_cost = delivery_cost + packaging_cost + insurance_cost + unloading_cost
         
+        # Вычитаем 150$ из итоговой суммы
+        total_cost = max(0, total_cost - 150)  # Не даем уйти в минус
+        
         result = {
             'delivery_cost': round(delivery_cost, 2),
             'packaging_cost': round(packaging_cost, 2),
