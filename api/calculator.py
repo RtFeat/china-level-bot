@@ -114,6 +114,9 @@ def calculate_delivery():
         if delivery_speed == 'Экспресс (5-7 дней)':
             delivery_cost *= 1.8
         
+        # Вычитаем 150$ из стоимости логистики
+        delivery_cost = delivery_cost - 150
+        
         # СТРАХОВКА
         # Формула: =ЕСЛИ((F12/F4)<30, F12*0.01, ЕСЛИ(F12/F4<50, F12*0.02, F12*0.03))
         if insurance:
@@ -169,9 +172,6 @@ def calculate_delivery():
         
         # ИТОГО (формула из Excel: =F22+F24+F20+H16)
         total_cost = delivery_cost + packaging_cost + insurance_cost + unloading_cost
-        
-        # Вычитаем 150$ из итоговой суммы
-        total_cost = max(0, total_cost - 150)  # Не даем уйти в минус
         
         result = {
             'delivery_cost': round(delivery_cost, 2),
